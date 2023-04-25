@@ -19,6 +19,7 @@ public class _01_RobotRace {
 			arrRobot[i] = new Robot();
 			arrRobot[i].setY(500);
 			arrRobot[i].setX(50 + i * 80);
+			arrRobot[i].setSpeed(0);
 		}
 		// 4. make each robot start at the bottom of the screen, side by side, facing up
 
@@ -27,41 +28,39 @@ public class _01_RobotRace {
 
 		while (true) {
 			for (int i = 0; i < arrRobot.length; i++) {
+		
+//				->_>->->->->->
+//				^            v
+//				^            v
+//				^            v
+//				^ <-  <- <- <- 
 
-				int move = new Random().nextInt(50);
+							
+				int move = new Random().nextInt(100);
 
 				// moveAndTurn
-				if (arrRobot[i].getY() < 100 && arrRobot[i].getX() == 100) {
+				if (arrRobot[i].getY() < 150 && arrRobot[i].getX() < 250) {
 					arrRobot[i].turn(90);
-					arrRobot[i].move(move);
-				} else if (arrRobot[i].getX() == 400) {
+					arrRobot[i].move(move+200);
+				} else if (arrRobot[i].getY() <= 150  && arrRobot[i].getX() >= 500) {
 					arrRobot[i].turn(90);
-					arrRobot[i].move(move);
+					arrRobot[i].move(move+100);
 				}
-
-				//else if (arrRobot[i].getY() == 500) {
-				//	arrRobot[i].turn(90);
-					//arrRobot[i].move(move);
-				//}
-
-				//else if (arrRobot[i].getX() == 100) {
-					//arrRobot[i].turn(90);
-					//arrRobot[i].move(move);
-				//} 
+				else if (arrRobot[i].getY() >=500 && arrRobot[i].getX() >= 500) {
+					arrRobot[i].turn(90);
+					arrRobot[i].move(move+200);
+				}
 				else {
 					arrRobot[i].move(move);
 				}
 
-				// arrRobot[i].move(move);
-				// arrRobot[i].turn(20);
+			
 
-				if (arrRobot[i].getY() >= 600) {
+				if (arrRobot[i].getY() >= 500 && arrRobot[i].getX() <= 200) {
 					JOptionPane.showMessageDialog(null, "Robot number " + i + " won!");
 				}
 				
-				//if (arrRobot[i].getY() >= 600) {
-				//	JOptionPane.showMessageDialog(null, "Robot number " + i + " won!");
-				//}
+				
 			}
 		}
 	}
