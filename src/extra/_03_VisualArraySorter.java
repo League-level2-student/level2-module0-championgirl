@@ -1,5 +1,11 @@
 package extra;
 
+import java.util.Random;
+
+import javax.swing.JFrame;
+
+import org.jointheleague.graphical.robot.Robot;
+
 import processing.core.PApplet;
 
 /*
@@ -40,20 +46,54 @@ import processing.core.PApplet;
 public class _03_VisualArraySorter extends PApplet {
     static final int WIDTH = 600;
     static final int HEIGHT = 400;
-
+	int[] numbers;
+    JFrame frame = new JFrame();
+   
+    Random rand = new Random();
+    
+    
+  
     @Override
     public void settings() {
-        
+         
+    frame.setSize(500,500);
+ 
     }
 
     @Override
     public void setup() {
-        
+          numbers = new int[50];
+          for(int i = 0; i< numbers.length; i++){
+                    numbers[i] = (int)random(height);
+                    noStroke();
+                   
+          }
     }
 
     @Override
     public void draw() {
-        
+    	background(24,24,24);
+    	fill(24,24,21);
+    	 for(int i = 0; i< numbers.length; i++){
+    		int x= i*(width/numbers.length);
+    		int y =  height;
+    		int w =  (width/numbers.length);
+    		int h =  -numbers[i];
+    			
+    		rect(x, y, w, h);
+    	
+    		stepSort(numbers);
+    		
+    	 }
+    	
+    }
+    public void randomArr() {
+    	 
+    	for(int i = 0; i< numbers.length; i++){
+            numbers[i] = (int)random(height);
+            noStroke();
+           
+  }
     }
 
     static public void main(String[] passedArgs) {
